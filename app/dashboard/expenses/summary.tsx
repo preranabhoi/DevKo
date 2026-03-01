@@ -7,13 +7,18 @@ import CardLoader from 'components/loader/card';
 
 import { formatCurrency } from 'lib/formatter';
 
+import UploadExpenses from './upload-expenses';
+
 export default function ExpensesSummary() {
 	const user = useUser();
-	const { data = [], loading = true } = useData();
+	const { data = [], loading = true, mutate } = useData();
 
 	return (
 		<>
-			<h2 className="mb-4 font-semibold text-primary dark:text-white">Summary</h2>
+			<div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+				<h2 className="font-semibold text-primary dark:text-white">Summary</h2>
+				<UploadExpenses mutate={mutate} />
+			</div>
 			{loading ? (
 				<CardLoader cards={2} className="mb-6" />
 			) : (
